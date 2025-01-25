@@ -1,0 +1,33 @@
+<TodoApp>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    ScrollView:
+        size_hint: 1, None
+        size: 400, 300
+
+        BoxLayout:
+            id: task_list
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+
+    TextInput:
+        id: task_input
+        size_hint: 1, None
+        height: 40
+        multiline: False
+
+    BoxLayout:
+        size_hint: 1, None
+        height: 50
+
+        Button:
+            text: "Add Task"
+            on_press: app.add_task(task_input.text)
+
+        Button:
+            text: "Remove Completed Tasks"
+            on_press: app.remove_completed()
+

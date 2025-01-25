@@ -1,0 +1,30 @@
+<LoginScreen>:
+    f_username: username
+    p_username: password
+
+    GridLayout:
+        rows: 3
+        cols: 2
+        padding: 10
+        spacing: 10
+        Label:
+            text: "User Name:"
+        TextInput:
+            id: username
+        Label:
+            text: "Password"
+        TextInput:
+            id: password
+            password: True
+        Button:
+            text: "Login"
+            on_press: root.do_login()
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Welcome to the Home Screen!"
+        Button:
+            text: "Logout"
+            on_press: app.switch_screen("login")
