@@ -34,7 +34,37 @@ my_kivy_app/          # Root project directory
 │── requirements.txt  # Dependencies (if any)
 ```
 
+## How to load KV
+
+There are two ways to load Kv code into your application:
+
+- By name convention:
+
+Kivy looks for a Kv file with the same name as your App class in lowercase, minus `App`f it ends with ‘App’ e.g:
+
+```
+MyApp -> my.kv
+```
+
+If this file defines a Root Widget it will be attached to the App’s root attribute and used as the base of the application widget tree.
+
+- Builder: You can tell Kivy to directly load a string or a file. If this string or file defines a root widget, it will be returned by the method:
+
+```python
+from kivy.lang import Builder
+
+Builder.load_file('path/to/file.kv')
+```
+
+or:
+
+```python
+Builder.load_string(kv_string)
+```
+
 So basically, Kivy is consist of Widget and the Layout is also considered Widgets.
+
+## Rule Context
 
 For creating the file `py` and `kv`, there are two rules that I must to follow
 
