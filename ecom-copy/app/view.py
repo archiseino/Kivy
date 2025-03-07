@@ -1,6 +1,7 @@
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.behaviors import ToggleButtonBehavior
 from kivy.properties import StringProperty
+from kivy.lang import Builder
 
 class MainWindow(BoxLayout):
     username = StringProperty("Samuel M")

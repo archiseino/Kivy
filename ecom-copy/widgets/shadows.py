@@ -19,6 +19,8 @@ Builder.load_string("""
 """)
 
 class ShadowBox(ButtonBehavior, BoxLayout):
+    radius = props.ListProperty([1])
+    bcolor = props.ColorProperty([1,1,1,1])
     def __init__(self, *args, **kwargs):
         super(ShadowBox, self).__init__(*args, **kwargs)
 

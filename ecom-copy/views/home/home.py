@@ -1,13 +1,13 @@
-from kivy import Builder
+from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
-
 import numpy as np
 from scipy.interpolate import make_interp_spline
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 Builder.load_file('views/home/home.kv')
+
 class Home(BoxLayout):
     def __init__(self, **kw) -> None:
         super().__init__(**kw)

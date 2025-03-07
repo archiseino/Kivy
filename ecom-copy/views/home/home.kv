@@ -1,42 +1,44 @@
-#:import ShadowBox widgets.shadow.ShadowBox
+#:import ShadowBox widgets.shadows.ShadowBox
 
+# Home Secition using Class Rule
 <Home>:
-    padding: dp(14)
-    spacing: dp(16)
-    BoxLayout:
+    padding: dp(14) # Padding the Entire Home Container
+    spacing: dp(16) # Add space between the child
+    BoxLayout: # Container for the Main Widget
         spacing: dp(16)
-        orientation: 'vertical'
-        size_hint_x: .75
-        BoxLayout:
+        size_hint_x: .2 # Width widget proportion to parent
+        orientation: 'vertical' # Default Horizontal; to setup the layout for child
+        BoxLayout: ## First Container
             spacing: dp(16)
-            size_hint_y: .2
-            ShadowBox:
-                radius: [dp(14)]
+            size_hint_y: .2 # Height widget proprtional to parent
+            ShadowBox: # Actual widget for HR, and stuff (First row)
+                radius: [dp(14)] # The ShadowBox Container have edges Rounded Rectangle
                 elevation: 2
                 padding: dp(14)
-                orientation: 'vertical'
                 spacing: dp(8)
-                BoxLayout:
-                    spacing: dp(14)
-                    AnchorLayout:
+                orientation: 'vertical'
+                BoxLayout: # The content for the Icon and the heading
+                    spacing: dp(14) 
+                    AnchorLayout: ## Icon Part
                         size_hint_x: None
                         width: self.height
-                        IconButton:
+                        IconButton: ## Imported From Main.kv
                             source: 'assets/icons/ic_trend-lg.png'
-                    BoxLayout: 
+                    BoxLayout: ## heading
                         orientation: 'vertical'
                         spacing: dp(8)
                         Text:
                             text: 'HR'
-                            font_name: app.fonts.body
+                            font_name: app.fonts.body  
                             font_size: app.fonts.size.h3
                             color: app.colors.grey_dark
                         Text:
-                            text: '$ 28,17.45'
-                            font_name: app.fonts.heading
+                            text: '66'
+                            font_name: app.fonts.heading 
                             font_size: app.fonts.size.h2
                             color: app.colors.secondary
-                BoxLayout:
+
+                BoxLayout: ## Second content (1 Row with 2 Column)
                     size_hint_y: None
                     height: dp(24)
                     spacing: dp(8)
@@ -48,72 +50,23 @@
                         size_hint_x: .75
                     BoxLayout:
                         size_hint_x: .25
-                        padding: [dp(4), dp(2)]
-                        canvas.before:
+                        padding: [dp(4), dp(2)] # Horizontal 4dp, vertical 2dp
+                        # Create an overlay background for text
+                        canvas.before: 
                             Color:
                                 rgba: rgba("#E1F1FF")
-                            RoundedRectangle:
+                            RoundedRectangle: ## Border of the overlay
                                 pos: self.pos
                                 size: self.size
-                                radius: [self.height/2]
-                        Text:
+                                radius: [self.height / 2]
+                    
+                        Text: 
                             text: '+8.5%'
                             color: app.colors.primary
                             font_name: app.fonts.subheading
                             font_size: app.fonts.size.h6
                             halign: 'center'
-            ShadowBox:
-                radius: [dp(14)]
-                elevation: 2
-                padding: dp(14)
-                orientation: 'vertical'
-                spacing: dp(8)
-                BoxLayout:
-                    spacing: dp(14)
-                    AnchorLayout:
-                        size_hint_x: None
-                        width: self.height
-                        IconButton:
-                            source: 'assets/icons/ic_bag-lg.png'
-                    BoxLayout:
-                        orientation: 'vertical'
-                        spacing: dp(8)
-                        Text:
-                            text: 'Orders'
-                            font_name: app.fonts.body
-                            font_size: app.fonts.size.h3
-                            color: app.colors.grey_dark
-                        Text:
-                            text: '2,473'
-                            font_name: app.fonts.heading
-                            font_size: app.fonts.size.h2
-                            color: app.colors.secondary
-                BoxLayout:
-                    size_hint_y: None
-                    height: dp(24)
-                    spacing: dp(8)
-                    Text:
-                        text: 'This Month'
-                        color: app.colors.grey_dark
-                        font_name: app.fonts.body
-                        font_size: app.fonts.size.h6
-                        size_hint_x: .75
-                    BoxLayout:
-                        size_hint_x: .25
-                        padding: [dp(4), dp(2)]
-                        canvas.before:
-                            Color:
-                                rgba: rgba("#E1F1FF")
-                            RoundedRectangle:
-                                pos: self.pos
-                                size: self.size
-                                radius: [self.height/2]
-                        Text:
-                            text: '+8.5%'
-                            color: app.colors.primary
-                            font_name: app.fonts.subheading
-                            font_size: app.fonts.size.h6
-                            halign: 'center'
+
             ShadowBox:
                 radius: [dp(14)]
                 elevation: 2
@@ -166,17 +119,71 @@
                             font_name: app.fonts.subheading
                             font_size: app.fonts.size.h6
                             halign: 'center'
-        BoxLayout:
-            spacing: dp(8)
-            size_hint_y: .5
-            orientation: 'vertical'
+     
             ShadowBox:
+                radius: [dp(14)]
+                elevation: 2
+                padding: dp(14)
+                orientation: 'vertical'
+                spacing: dp(8)
+                BoxLayout:
+                    spacing: dp(14)
+                    AnchorLayout:
+                        size_hint_x: None
+                        width: self.height
+                        IconButton:
+                            source: 'assets/icons/ic_bag-lg.png'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: dp(8)
+                        Text:
+                            text: 'Orders'
+                            font_name: app.fonts.body
+                            font_size: app.fonts.size.h3
+                            color: app.colors.grey_dark
+                        Text:
+                            text: '2,473'
+                            font_name: app.fonts.heading
+                            font_size: app.fonts.size.h2
+                            color: app.colors.secondary
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(24)
+                    spacing: dp(8)
+                    Text:
+                        text: 'This Month'
+                        color: app.colors.grey_dark
+                        font_name: app.fonts.body
+                        font_size: app.fonts.size.h6
+                        size_hint_x: .75
+                    BoxLayout:
+                        size_hint_x: .25
+                        padding: [dp(4), dp(2)]
+                        canvas.before:
+                            Color:
+                                rgba: rgba("#E1F1FF")
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [self.height/2]
+                        Text:
+                            text: '+8.5%'
+                            color: app.colors.primary
+                            font_name: app.fonts.subheading
+                            font_size: app.fonts.size.h6
+                            halign: 'center'
+
+        BoxLayout: ## Second Container
+            spacing: dp(8)
+            size_hint_y: .5 ## Height proportional to parent
+            orientation: 'vertical'
+            ShadowBox: # Overlay Box
                 radius: [dp(14)]
                 elevation: 1
                 orientation: 'vertical'
-                spacing: dp(8)
-                padding: dp(12)
-                BoxLayout:
+                padding: dp(8) # Padding the Entire Home Container
+                spacing: dp(12) # Add space between the child
+                BoxLayout: ## Container for Signal Stuff
                     spacing: dp(8)
                     size_hint_y: None
                     height: dp(42)
@@ -200,12 +207,4 @@
                         size_hint_x: .2
                 BoxLayout:
                     id: graph
-        BoxLayout:
-            spacing: dp(8)
-            size_hint_y: .3
-            ShadowBox:
-                radius: [dp(14)]
-                elevation: 2
-    BoxLayout:
-        size_hint_x: .25
-        ShadowBox:
+                    
