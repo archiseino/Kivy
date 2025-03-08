@@ -286,3 +286,10 @@ Kivy's graphics system is divided into two types of instructions:
             pos: self.pos
             size: self.size
 ```
+
+## FAQ
+
+- RoundedEdges on Button
+  This is a tricky one. As far as I am concern Widgets are always rectangles. But we can change the background and put a couple of images for the normal and down states using the background_normal and background_down properties respectively. Also you will need to understand the border property.
+- Yes, that's correct. In Kivy, when you set parameters in the KV file, they are used to set the properties of the widget, not to pass arguments to the **init** function. The properties defined in the class (such as StringProperty, NumericProperty, etc.) are automatically managed by Kivy's property system.
+- When you set a property in the KV file, Kivy automatically updates the corresponding property in the class instance. This means that the parameters in the KV file are used to set the properties, not to pass arguments to the **init** function.

@@ -1,0 +1,35 @@
+#:import CustomButton widgets.main.CustomButton
+#:import StatusIndicator widgets.main.StatusIndicator
+#:import ProgressBarWidget widgets.main.ProgressBarWidget
+#:import LiveDataLabel widgets.main.LiveDataLabel
+#:import OverlayContainer widgets.main.OverlayContainer
+#:import RoundedCard widgets.main.RoundedCard
+#:import IconButton widgets.buttons.IconButton
+#:import CustomTextInput widgets.main.CustomTextInput
+
+<CameraLayout>:
+    size: 640, 100
+
+<HeartRateLayout>:
+    orientation: 'vertical'
+    Label:
+        id: hr_label
+        text: "Heart Rate: 75 BPM"
+        font_size: '20sp'
+
+<StressMonitorLayout>:
+    spacing: dp(8)
+    canvas.before:
+        Color:
+            rgba: rgba('#000')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    orientation: 'vertical'
+    CameraLayout:
+    CustomTextInput:
+    ProgressBarWidget:
+    OverlayContainer:
+    RoundedCard:
+    HeartRateLayout:
