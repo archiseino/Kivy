@@ -14,8 +14,9 @@ Builder.load_string("""
 
 <IconButton>:
     size_hint: 0, None
-    size: 60, 60
+    size: 16, 16
     on_press: self.on_click()
+    valign: "middle"
     canvas.after:
         Color:
             rgba: [1,1,1,1]

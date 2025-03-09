@@ -1,6 +1,11 @@
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.progressbar import ProgressBar
+from kivy.uix.widget import Widget
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from kivy.graphics.texture import Texture
+
 
 Builder.load_string("""
 <StatusIndicator>:

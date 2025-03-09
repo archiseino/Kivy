@@ -3,6 +3,7 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.uix.image import Image
 import cv2
+import kivy_matplotlib_widget #register all widgets to kivy register
 from kivy.graphics.texture import Texture
 
 ## Import Signal Processing
@@ -30,8 +31,29 @@ class CameraLayout(Image):
             texture.blit_buffer(buffer, colorfmt="bgr", bufferfmt="ubyte")
             self.texture = texture
 
-class HeartRateLayout(BoxLayout):
-    pass
-
 class StressMonitorLayout(BoxLayout):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)  
+
+        self.lines = []
+        self.line_index = 0
+
+        ## Getting the ID
+        self.figure_wgt = self.ids.figure_hr
+
+        ## Generate figure
+        self.fig, self.ax1 = plt.subplots(1, 1)
+        self.fig.subplots_adjust(left=0.13, top=0.96, right=0.93, bottom=0.2)
+        self.figure_wgt.figure = self.fig
+        
+        Clock.schedule_interval(self.update_graph, 1)
+
+    def update_graph(self, dt):
+        if self.line_index < 5:
+            x = [j for j in range(5)]
+            y = [j * (self.line_index + 1) for j in range(5)]
+            line, = self.ax1.plot(x, y, label=f'line{self.line_index + 1}')
+            self.lines.append(line)
+            self.figure_wgt.register_lines(self.lines)
+            self.line_index += 1
+            self.figure_wgt.figure.canvas.draw_idle()  # Refresh the figure 

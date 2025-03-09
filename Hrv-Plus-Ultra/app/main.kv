@@ -2,7 +2,7 @@
 #:import Text widgets.inputs.Text
 #:import IconButton widgets.buttons.IconButton
 #:import OverlayContainer widgets.containers.OverlayContainer
-#:import BoxStatus widgets.containers.BoxStatus
+#:import StatusBox widgets.containers.StatusBox
 
 # Home Monitoring Section
 <StressMonitorLayout>:
@@ -20,8 +20,8 @@
         padding: dp(6)
         orientation: 'vertical'
         Text:
-            size_hint_y: 0.1
-            text: "v0.1"
+            size_hint_y: 0.08
+            text: "v0.1 - Jawa"
 
         BoxLayout:
             spacing: dp(10)
@@ -87,7 +87,7 @@
                 ShadowBox:
                     radius: [dp(16)] ## Rounded 16dp
                     elevation: 2
-                    size_hint: 1, 0.7
+                    size_hint: 1, 1
                     padding: dp(16)
                     spacing: dp(8)
                     orientation: "vertical" 
@@ -103,7 +103,7 @@
                                 text: "Heart Rate"
                                 font_name: app.fonts.body
                                 font_size: app.fonts.size.h3
-                                color: app.colors.grey_dark
+                                color: app.colors.black
                         AnchorLayout:
                             anchor_x: 'right'
                             anchor_y: 'center'
@@ -132,22 +132,138 @@
                     BoxLayout:
                         size_hint_y: 0.6
                         OverlayContainer:
+                            padding: dp(10)
+                            radius: [dp(8)] ## Rounded 16dp
+                            MatplotFigure:
+                                id: figure_hr
+
 
                     ## Physiology Status StatusIndicator
                     BoxLayout:
-                        size_hint: 1, 0.3
-                        elevation: 2
+                        size_hint: 1, 0.4
                         padding: dp(8)
                         spacing: dp(8)
-                        canvas.before:
-                            Color:
-                                rgba: app.colors.grey_dark
-                            RoundedRectangle:
-                                size: self.size
-                                pos: self.pos
-                                radius: [1]
+                        StatusBox:
+                            size_hint: 1, 1
+                            radius: [dp(16)] ## Rounded 16dp
+                            orientation: 'vertical'
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                size_hint_y: 1
+                                IconButton:
+                                    size_hint: None, None
+                                    size: dp(16), dp(16)
+                                    pos_hint: {'center_y': 0.5}
+                                    source: 'assets/icons/heart-pulse-solid.png'
+                                Text:
+                                    text: "Heart Rate"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h4
+                                    color: app.colors.black
 
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                size_hint_y: 1
+                                Text:
+                                    text: "75 BPM"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h2
+                                    color: app.colors.black
 
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                size_hint_y: 1
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                Text:
+                                    text: "Normal"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h5
+                                    color: app.colors.success
+
+                        StatusBox:
+                            size_hint: 1, 1
+                            radius: [dp(16)] ## Rounded 16dp
+                            orientation: 'vertical'
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                size_hint_y: 1
+                                IconButton:
+                                    size_hint: None, None
+                                    size: dp(16), dp(16)
+                                    pos_hint: {'center_y': 0.5}
+                                    source: 'assets/icons/droplet-solid.png'
+                                Text:
+                                    text: "SpO2"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h5
+                                    color: app.colors.black
+
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                size_hint_y: 1
+                                Text:
+                                    text: "98%"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h2
+                                    color: app.colors.black
+
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                size_hint_y: 1
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                Text:
+                                    text: "Normal"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h5
+                                    color: app.colors.success
+
+                        StatusBox:
+                            size_hint: 1, 1
+                            radius: [dp(16)] ## Rounded 16dp
+                            orientation: 'vertical'
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                size_hint_y: 1
+                                IconButton:
+                                    size_hint: None, None
+                                    size: dp(16), dp(16)
+                                    pos_hint: {'center_y': 0.5}
+                                    source: 'assets/icons/wave-square-solid.png'
+                                Text:
+                                    text: "HRV"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h5
+                                    color: app.colors.black
+
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                size_hint_y: 1
+                                Text:
+                                    text: "45 Ms"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h2
+                                    color: app.colors.black
+
+                            BoxLayout:  # Wrap inside a horizontal BoxLayout to avoid overlap
+                                size_hint_y: 1
+                                spacing: dp(8)  
+                                padding: dp(8)
+                                Text:
+                                    text: "Normal"
+                                    font_name: app.fonts.body
+                                    font_size: app.fonts.size.h5
+                                    color: app.colors.success
+                    
+                    BoxLayout:
+                        size_hint_y: 0.2
+                        Text:
+                            text:"Jawa - Stress Indicator [Later]"
 
 <CameraLayout>:
     allow_stretch: True
@@ -173,10 +289,3 @@
         StencilUnUse
         StencilPop
     
-
-<HeartRateLayout>:
-    orientation: 'vertical'
-    Label:
-        id: hr_label
-        text: "Heart Rate: 75 BPM"
-        font_size: '20sp'
