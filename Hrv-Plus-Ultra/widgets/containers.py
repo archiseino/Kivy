@@ -9,6 +9,7 @@ kv = """
     BoxLayout:
         id: main
         orientation: root.orientation
+        size_hint: root.size_hint
         canvas.before:
             Color:
                 rgba: root.bcolor
@@ -17,10 +18,9 @@ kv = """
                 pos: self.pos
                 radius: root.radius
 
+
 <OverlayContainer>:
     orientation: 'vertical'
-    size_hint: None, None
-    size: 300, 200
     canvas.before:
         Color:
             rgba: 0, 0, 0, 0.5
@@ -33,8 +33,6 @@ kv = """
         height: 40
 
 <RoundedCard>:
-    size_hint: None, None
-    size: 250, 150
     canvas.before:
         Color:
             rgba: 0, 0, 0, 1
@@ -44,8 +42,6 @@ kv = """
             radius: [20,]
 
 <GraphContainer>:
-    size_hint: None, None
-    size: 300, 200
     Label:
         text: "Graph Placeholder"
 """
