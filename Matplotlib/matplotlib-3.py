@@ -1,27 +1,25 @@
 from kivy.utils import platform
 from kivy.config import Config
 
-#avoid conflict between mouse provider and touch (very important with touch device)
-#no need for android platform
+# Avoid conflict between mouse provider and touch (very important with touch device)
+# No need for android platform
 if platform != 'android':
     Config.set('input', 'mouse', 'mouse,disable_on_activity')
 else:
-    #for android, we remove mouse input to not get extra touch 
+    # For android, we remove mouse input to not get extra touch 
     Config.remove_option('input', 'mouse')
 
 from kivy.lang import Builder
 from kivy.app import App
-import kivy_matplotlib_widget  #register all widgets to kivy register
+from kivy.clock import Clock
+import kivy_matplotlib_widget  # Register all widgets to kivy register
 
-#generate figure
+# Generate figure
 import matplotlib.pyplot as plt
 fig, ax1 = plt.subplots(1, 1)
-line1, = ax1.plot([0,1,2,3,4], [1,2,8,9,4],label='line1')
-line2, = ax1.plot([2,8,10,15], [15,0,2,4],label='line2')
-fig.subplots_adjust(left=0.13,top=0.96,right=0.93,bottom=0.2)
+fig.subplots_adjust(left=0.13, top=0.96, right=0.93, bottom=0.2)
 
 KV = '''
-
 Screen
     figure_wgt:figure_wgt
     BoxLayout:
@@ -46,29 +44,34 @@ Screen
                     self.state='down'                
         MatplotFigure:
             id:figure_wgt
-            #update axis during pan/zoom
+            # Update axis during pan/zoom
             fast_draw:False
 '''
 
-
 class Test(App):
     lines = []
+    line_index = 0
 
     def build(self):  
-        self.screen=Builder.load_string(KV)
+        self.screen = Builder.load_string(KV)
         return self.screen
 
     def on_start(self, *args):
         self.screen.figure_wgt.figure = fig
+        Clock.schedule_interval(self.update_graph, 1)  # Schedule updates every second
 
-        #register lines instance if need to be update
-        self.lines.append(line1)
-        self.lines.append(line2)
+    def update_graph(self, dt):
+        if self.line_index < 5:
+            x = [j for j in range(5)]
+            y = [j * (self.line_index + 1) for j in range(5)]
+            line, = ax1.plot(x, y, label=f'line{self.line_index + 1}')
+            self.lines.append(line)
+            self.screen.figure_wgt.register_lines(self.lines)
+            self.line_index += 1
+            self.screen.figure_wgt.figure.canvas.draw_idle()  # Refresh the figure
 
-        self.screen.figure_wgt.register_lines(self.lines)
-
-    def set_touch_mode(self,mode):
-        self.screen.figure_wgt.touch_mode=mode
+    def set_touch_mode(self, mode):
+        self.screen.figure_wgt.touch_mode = mode
 
     def home(self):
         self.screen.figure_wgt.home()

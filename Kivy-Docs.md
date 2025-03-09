@@ -289,7 +289,104 @@ Kivy's graphics system is divided into two types of instructions:
 
 ## FAQ
 
+- In Kivy, when you import a widget in one .kv file, it becomes available globally within the Kivy application. This means that if you import IconButton in main.kv, it will be recognized and can be used in other .kv files, such as home.kv, without needing to import it again.
+
+Here's how it works:
+
+Global Namespace: When you import a widget in a .kv file, Kivy adds it to the global namespace. This allows the widget to be used in any other .kv file within the same application.
+
+Import in main.kv: In your main.kv file, you have imported IconButton:
+
 - RoundedEdges on Button
   This is a tricky one. As far as I am concern Widgets are always rectangles. But we can change the background and put a couple of images for the normal and down states using the background_normal and background_down properties respectively. Also you will need to understand the border property.
 - Yes, that's correct. In Kivy, when you set parameters in the KV file, they are used to set the properties of the widget, not to pass arguments to the **init** function. The properties defined in the class (such as StringProperty, NumericProperty, etc.) are automatically managed by Kivy's property system.
 - When you set a property in the KV file, Kivy automatically updates the corresponding property in the class instance. This means that the parameters in the KV file are used to set the properties, not to pass arguments to the **init** function.
+
+- In Kivy, padding and spacing are used to control the layout of widgets within a container, but they serve different purposes:
+
+  - Padding: This property adds space inside the container, between the container's border and its children. It effectively shrinks the available space for the children by the specified amount on each side.
+
+  - Spacing: This property adds space between the children of the container. It does not affect the space between the container's border and its children, only the space between the children themselves.
+
+  ```
+  <Home>:
+      padding: dp(14) # Adds 14dp of space inside the container's border
+      spacing: dp(16) # Adds 16dp of space between each child widget
+  ```
+
+`size_hint`
+
+- Definition: size_hint is a tuple of two values, (size_hint_x, size_hint_y), which represent the width and height proportions relative to the parent container.
+- Usage: When you set size_hint, you are specifying how much of the parent container's size the widget should take up. The values are typically between 0 and 1, where 1 means 100% of the parent's size.
+
+`size`
+
+- Definition: size is a tuple of two values, (width, height), which represent the explicit size of the widget in pixels (or density-independent pixels, dp).
+- 3Usage: When you set size, you are specifying the exact size of the widget. To use size, you must set size_hint to None for the corresponding dimension.
+
+```
+BoxLayout:
+    orientation: 'vertical'
+    Button:
+        text: "Button 1"
+        size_hint: None, None
+        size: dp(100), dp(50)  # Explicitly sets the size to 100dp by 50dp
+    Button:
+        text: "Button 2"
+        size_hint: 1, None
+        height: dp(50)  # Takes up 100% of the parent's width and has a height of 50dp
+```
+
+### Layout
+
+### AnchorLayout
+
+AnchorLayout is used to position its child widgets at a specified anchor point within its bounding box. You can align widgets to the center, top, bottom, left, right, or any combination of these positions.
+
+Properties:
+
+- anchor_x: Specifies the horizontal alignment. Possible values are 'left', 'center', and 'right'.
+- anchor_y: Specifies the vertical alignment. Possible values are 'top', 'center', and 'bottom'.
+
+```
+AnchorLayout:
+    anchor_x: 'center'
+    anchor_y: 'center'
+    Button:
+        text: "Centered Button"
+```
+
+### GridLayout
+
+GridLayout arranges its children in a grid with a specified number of columns and rows. It is useful for creating layouts where widgets need to be aligned in a tabular format.
+
+Properties:
+
+- cols: Number of columns in the grid.
+- rows: Number of rows in the grid.
+- col_default_width: Default width of each column.
+- row_default_height: Default height of each row.
+- col_force_default: If True, forces each column to have the default width.
+- row_force_default: If True, forces each row to have the default height.
+
+```
+GridLayout:
+    cols: 2
+    rows: 2
+    Button:
+        text: "Button 1"
+    Button:
+        text: "Button 2"
+    Button:
+        text: "Button 3"
+    Button:
+        text: "Button 4"
+```
+
+## Kivy's Coordinate System
+
+Origin (0,0) is at the bottom-left corner of the window (not top-left like in HTML/CSS).
+X-axis (width) grows from left to right.
+Y-axis (height) grows from bottom to top
+
+Since by default the first child on the bottom, use the AnchorLayout and set the anchor_y to be on 'top'
