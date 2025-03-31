@@ -2,4 +2,4 @@
 
 Note to self:
 
-- Adding teh Architecture later. For now just focus on the HomePage
+- Adding the Architecture later. For now just focus on the HomePage

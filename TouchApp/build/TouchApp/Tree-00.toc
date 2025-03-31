@@ -1,0 +1,13 @@
+('D:\\Stuff That I Need to Do\\Kivy\\TouchTracer',
+ None,
+ [],
+ 'DATA',
+ [('icon.png',
+   'D:\\Stuff That I Need to Do\\Kivy\\TouchTracer\\icon.png',
+   'DATA'),
+  ('main.py',
+   'D:\\Stuff That I Need to Do\\Kivy\\TouchTracer\\main.py',
+   'DATA'),
+  ('touchtracer.kv',
+   'D:\\Stuff That I Need to Do\\Kivy\\TouchTracer\\touchtracer.kv',
+   'DATA')])
