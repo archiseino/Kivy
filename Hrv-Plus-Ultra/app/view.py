@@ -44,16 +44,16 @@ class StressMonitorLayout(BoxLayout):
         ## Generate figure
         self.fig, self.ax1 = plt.subplots(1, 1)
         self.fig.subplots_adjust(left=0.13, top=0.96, right=0.93, bottom=0.2)
-        # self.figure_hr.figure = self.fig
+        self.figure_hr.figure = self.fig
         
-        # Clock.schedule_interval(self.update_graph, 1)
+        Clock.schedule_interval(self.update_graph, 1)
 
-    # def update_graph(self, dt):
-    #     if self.line_index < 5:
-    #         x = [j for j in range(5)]
-    #         y = [j * (self.line_index + 1) for j in range(5)]
-    #         line, = self.ax1.plot(x, y, label=f'line{self.line_index + 1}')
-    #         self.lines.append(line)
-    #         self.figure_hr.register_lines(self.lines)
-    #         self.line_index += 1
-    #         self.figure_hr.figure.canvas.draw_idle()  # Refresh the figure 
+    def update_graph(self, dt):
+        if self.line_index < 5:
+            x = [j for j in range(5)]
+            y = [j * (self.line_index + 1) for j in range(5)]
+            line, = self.ax1.plot(x, y, label=f'line{self.line_index + 1}')
+            self.lines.append(line)
+            self.figure_hr.register_lines(self.lines)
+            self.line_index += 1
+            self.figure_hr.figure.canvas.draw_idle()  # Refresh the figure 

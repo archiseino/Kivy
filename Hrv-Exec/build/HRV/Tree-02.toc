@@ -1,7 +1,0 @@
-('C:\\Users\\ACER\\miniconda3\\envs\\kivy_env\\share\\glew\\bin',
- None,
- [],
- 'DATA',
- [('glew32.dll',
-   'C:\\Users\\ACER\\miniconda3\\envs\\kivy_env\\share\\glew\\bin\\glew32.dll',
-   'DATA')])

@@ -10,7 +10,15 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[],
-    hiddenimports=[],
+    hiddenimports = [
+        "kivy_matplotlib_widget.uix",
+        "kivy_matplotlib_widget.uix.graph_widget",
+        "widgets.containers.ShadowBox",
+        "widgets.inputs.Text",
+        "widgets.buttons.IconButton",
+        "widgets.containers.OverlayContainer",
+        "widgets.containers.StatusBox"
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
