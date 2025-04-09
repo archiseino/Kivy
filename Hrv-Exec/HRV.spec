@@ -2,13 +2,20 @@
 
 
 from kivy_deps import sdl2, glew
+import os 
+import site
+
+def get_jaraco_path():
+    return os.path.join(site.getsitepackages()[1], "setuptools", "_vendor", "jaraco")
+
 block_cipher = None
 
 
 a = Analysis(
     ['D:\\Stuff That I Need to Do\\Kivy\\Hrv-Plus-Ultra\\main.py'],
     pathex=[],
-    binaries=[],
+    # binaries=[("C:\\Users\\ACER\\miniconda3\\envs\\env_dsp\\Lib\\site-packages\\setuptools\\_vendor\\jaraco", "jaraco")],
+    binaries=[(get_jaraco_path(), "jaraco")],
     datas=[],
     hiddenimports = [
         "kivy_matplotlib_widget.uix",
