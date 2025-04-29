@@ -92,11 +92,11 @@ class CameraScreen(Screen):
             self.ids.camera_feed.texture = image_texture
 
     def on_leave(self):
-        # Release the camera when leaving the screen
+        # Release the camera and unschedule the Clock event when leaving the screen
         if self.capture:
             self.capture.release()
             self.capture = None
-
+        Clock.unschedule(self.update)  # Stop the update method from being called
 class ScreenTwo(Screen):
     pass
 
